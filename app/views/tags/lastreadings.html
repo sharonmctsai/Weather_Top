@@ -1,0 +1,90 @@
+
+<div style="display: flex ;">
+
+    <span class="bulma-ltr-rtl-mixin "></span>
+<div class="column is-one-fifth has-background-grey-light 		">
+
+  <div class="card has-background-link-light		">
+    <div class="card-content">
+        <figure>
+            <img src="/public/images/station.png">
+        </figure>
+    <h2>${_station.title} </h2>
+
+        <p>Latitude: ${_station.getLatitude()}</p>
+        <p>Longitude: ${_station.getLongitude()}</p>
+
+
+    </div>
+  </div>
+<br>
+</div>
+
+    <div class="column is-one-fifth has-background-grey-light 	">
+    <div class="card has-background-warning ">
+        <div class="card-content ">
+            <figure>
+                <img src="/public/images/weather.png">
+            </figure>
+    <h2>Weather </h2>
+      <p>
+        ${_station.readings[-1].getWeatherCode()}
+      </p>
+    </div>
+  </div>
+    </div>
+
+    <div class="column is-one-fifth has-background-grey-light	">
+      <div class="card has-background-success">
+        <div class="card-content">
+
+            <figure>
+                <img src="/public/images/temperature.png">
+            </figure>
+
+            <h2 class="has-text-info-light">Temp</h2>
+          <p>
+            ${_station.readings[-1].getWeatherTemp()+"C / "}
+
+                ${_station.readings[-1].getFahrenheit()+"F"}
+
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="column is-one-fifth has-background-grey-light	">
+    <div class="card has-background-warning	">
+        <div class="card-content">
+            <figure>
+                <img src="/public/images/windy.png">
+            </figure>
+    <h2> Wind</h2>
+    <p>
+        ${_station.readings[-1].getBeaufort()+"bft"}
+        <br>
+        ${_station.readings[-1].getWindDirection()}
+        <br>
+       Feels like ${_station.readings[-1].getWindChill()+ "C  "}
+
+    </p>
+        </div>
+    </div>
+    </div>
+
+    <div class="column is-one-fifth has-background-grey-light	">
+        <div class="card has-background-success	">
+            <div class="card-content">
+                <figure>
+                    <img src="/public/images/barometer.png">
+                </figure>
+    <h2 class="has-text-info-light">Pressure</h2>
+    <p>
+        ${_station.readings[-1].getPressure()}
+    </p>
+
+    </div>
+  </div>
+</div>
+</div>
+
+

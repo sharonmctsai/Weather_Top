@@ -1,0 +1,19 @@
+#{extends 'main.html' /}
+#{set title:'Station' /}
+
+#{menu id:"dashboard"/}
+
+<div class="content box">
+  <h1 class="title">
+    ${station.title}
+  </h1>
+  #{if station.readings.size() > 0}
+    #{lastreadings station:station /}
+  #{/if}
+
+  #{listreadings station:station /}
+
+  #{addreading station:station /}
+
+
+</div>

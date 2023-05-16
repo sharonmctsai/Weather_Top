@@ -1,0 +1,22 @@
+.season {
+   width: 150px;
+   margin: 50px;
+}
+
+.tower {
+   width: 480px;
+   height:800px;
+   margin-right: 100px;
+
+}
+
+.device {
+   width: 480px;
+   height:800px;
+float:right;
+   margin-left: 150px;
+margin-top:auto;
+   padding-top: 5px;
+
+
+}
