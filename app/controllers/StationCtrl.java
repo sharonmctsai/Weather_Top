@@ -14,21 +14,22 @@ public class StationCtrl extends Controller
     render("station.html", station);
   }
 
-  public static void addReading(Long id, String dateString, int code, double temperature, double windSpeed, int windDirection, int pressure)
+  public static void addReading(Long id, String date, int code, double temperature, double windSpeed, int windDirection, int pressure)
   {
-    System.out.printf("%d %f\n", code, temperature);
-    Reading reading = new Reading (dateString,code,temperature,windSpeed,windDirection, pressure);
+    Reading reading = new Reading (date,code,temperature,windSpeed,windDirection, pressure);
     Station station = Station.findById(id);
     station.readings.add(reading);
     station.save();
     redirect ("/stations/" + id);
   }
-  public static void deleteReading(Long id)
+  public static void deletereading(Long id ,Long readingid)
   {
     Station station = Station.findById(id);
-    Reading reading = Reading.findById(id);
+    Reading reading = Reading.findById(readingid);
     Logger.info ("Removing " + reading);
-
+    station.readings.remove(reading);
+    station.save();
+    reading.delete();
     render("station.html", station);
   }
 

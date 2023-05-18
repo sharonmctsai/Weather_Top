@@ -4,8 +4,13 @@ import javax.persistence.Entity;
 
 import play.db.jpa.Model;
 
-import static utilities.Conversions.CelsiusToFarenheit;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+
+import static utilities.Conversions.CelsiusToFarenheit;
+
+
 
 @Entity
 public class Reading extends Model {
@@ -17,13 +22,22 @@ public class Reading extends Model {
   public int pressure;
 
   public Reading(String date, int code, double temperature, double windSpeed, int windDirection, int pressure) {
-    this.date = date;
+    this.date =date;
     this.code = code;
     this.temperature = temperature;
     this.windSpeed = windSpeed;
     this.windDirection = windDirection;
     this.pressure = pressure;
   }
+
+
+
+  public String getCurrentDate() {
+    LocalDateTime dateTime = LocalDateTime.now(ZoneOffset.UTC);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    return dateTime.format(formatter);
+  }
+
 
   public double getWindChill() {
     double windChill = 13.12 + 0.6215 * this.temperature - 11.37 * Math.pow(this.windSpeed, 0.16)
@@ -53,6 +67,29 @@ public class Reading extends Model {
         return " ";
     }
   }
+  public String getWeatherIcon() {
+    switch (this.code) {
+      case 100:
+        return "/public/images/sun.png";
+      case 200:
+        return "/public/images/partialclouds.png";
+      case 300:
+        return "/public/images/cloudy.png";
+      case 400:
+        return "/public/images/lightshower.png";
+        case 500:
+          return "/public/images/heavyshower.png";
+      case 600:
+        return "/public/images/rains.png";
+      case 700:
+        return "/public/images/snow.png";
+      case 800:
+        return "/public/images/thunder.png";
+      default:
+        return "/public/images/weather.png";
+    }
+  }
+
 
   String getWindDirection() {
     if (windDirection >= 11 && windDirection <= 33) {

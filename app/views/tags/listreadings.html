@@ -12,7 +12,8 @@
     <tbody>
     #{list items:_station.readings, as:'reading'}
     <tr> <td>
-        ${reading.date}
+        ${reading.getCurrentDate()}
+
     </td>
         <td>
             ${reading.code}

@@ -24,12 +24,14 @@
     <div class="card has-background-warning ">
         <div class="card-content ">
             <figure>
-                <img src="/public/images/weather.png">
+                <img src="${_station.readings[-1].getWeatherIcon()}">
             </figure>
     <h2>Weather </h2>
       <p>
         ${_station.readings[-1].getWeatherCode()}
       </p>
+
+
     </div>
   </div>
     </div>
@@ -37,18 +39,28 @@
     <div class="column is-one-fifth has-background-grey-light	">
       <div class="card has-background-success">
         <div class="card-content">
-
             <figure>
                 <img src="/public/images/temperature.png">
             </figure>
 
             <h2 class="has-text-info-light">Temp</h2>
-          <p>
+
+            <p>
             ${_station.readings[-1].getWeatherTemp()+"C / "}
 
                 ${_station.readings[-1].getFahrenheit()+"F"}
-
             </p>
+            <p>
+                Max Temperature: ${_station.getMaxTemperature()} C
+            </p>
+            <p>
+                Min Temperature: ${_station.getMinTemperature()} C
+            </p>
+            <figure>
+                <img src="${_station.readings.size() > 1 && _station.readings[-1].getWeatherTemp() > _station.readings[-2].getWeatherTemp()
+                ? '/public/images/high-temperature.png' : '/public/images/low-temperature.png'}">
+            </figure>
+
         </div>
       </div>
     </div>
@@ -59,6 +71,8 @@
                 <img src="/public/images/windy.png">
             </figure>
     <h2> Wind</h2>
+
+
     <p>
         ${_station.readings[-1].getBeaufort()+"bft"}
         <br>
@@ -67,6 +81,19 @@
        Feels like ${_station.readings[-1].getWindChill()+ "C  "}
 
     </p>
+
+            <p>
+                Max WindChill: ${_station.getMaxWindChill()} C
+            </p>
+            <p>
+                Min WindChill: ${_station.getMinWindChill()} C
+            </p>
+
+            <figure>
+                <img src="${_station.readings.size() > 1 && _station.readings[-1].getWindChill() > _station.readings[-2].getWindChill()
+            ? '/public/images/up-arrow.png' : '/public/images/down-arrow.png'}">
+
+            </figure>
         </div>
     </div>
     </div>
@@ -81,7 +108,18 @@
     <p>
         ${_station.readings[-1].getPressure()}
     </p>
+                <p>
+                    Max Pressure: ${_station.getMaxPressure()} hPa
+                </p>
+                <p>
+                    Min Pressure: ${_station.getMinPressure()} hPa
+                </p>
 
+                <figure>
+                    <img src="${_station.readings.size() > 1 && _station.readings[-1].getPressure() > _station.readings[-2].getPressure()
+            ? '/public/images/up.png' : '/public/images/down.png'}">
+
+                </figure>
     </div>
   </div>
 </div>
