@@ -32,8 +32,9 @@ public class Reading extends Model {
 
 
 
-  public String getCurrentDate() {
-    LocalDateTime dateTime = LocalDateTime.now(ZoneOffset.UTC);
+  public String getFormattedDate() {
+    String formattedDate = this.date;
+    LocalDateTime dateTime = LocalDateTime.parse(formattedDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     return dateTime.format(formatter);
   }
